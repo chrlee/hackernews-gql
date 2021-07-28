@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.json",
-    "start": "npm run build && node --es-module-specifier-resolution=node build/server.js",
-    "dev": "nodemon -e src/**/*.ts --exec npm run start"
+    "start": "node --es-module-specifier-resolution=node build/server.js",
+    "dev": "npm run build && nodemon -e src/**/*.ts --exec npm run start"
   },
   "author": {
     "name": "searchableguy",

@@ -5,7 +5,7 @@ import { PingResolver, UserResolver } from "./resolvers";
 import { } from "./schema";
 import { buildSchema } from "type-graphql";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-import { SERVER_PORT } from "./constants"
+import { SERVER_PORT, SERVER_HOST } from "./constants"
 
 async function start() {
     const schema = await buildSchema({
@@ -22,7 +22,12 @@ async function start() {
     const app = fastify();
     await server.start();
     app.register(server.createHandler());
-    const endpoint = await app.listen(SERVER_PORT);
+    
+    const endpoint = await app.listen({
+        host: SERVER_HOST,
+        port: SERVER_PORT,
+    });
+
     console.log(`🚀 Server ready at ${endpoint}/graphql`);
 }
 
