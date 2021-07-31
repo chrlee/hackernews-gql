@@ -18,6 +18,6 @@ COPY --from=build . .
 
 WORKDIR /app
 
-EXPOSE 8000
+EXPOSE 8080
 
 CMD ["node", "--es-module-specifier-resolution=node", "build/server.js"]

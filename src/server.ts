@@ -2,7 +2,7 @@ import { ApolloServer } from "apollo-server-fastify";
 import { fastify } from "fastify";
 import { schema } from "./schema/mod";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-import { SERVER_PORT, SERVER_HOST } from "./constants"
+import { SERVER_PORT } from "./constants"
 
 async function start() {
     const server = new ApolloServer({
@@ -17,7 +17,6 @@ async function start() {
     app.register(server.createHandler());
     
     const endpoint = await app.listen({
-        host: SERVER_HOST,
         port: SERVER_PORT,
     });
 
