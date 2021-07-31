@@ -10,7 +10,6 @@ specifiers:
   graphql: ^15.5.1
   nexus: ^1.1.0
   nodemon: ^2.0.12
-  reflect-metadata: ^0.1.13
   ts-node: ^10.1.0
   typescript: ^4.3.5
 
@@ -22,7 +21,6 @@ dependencies:
   firebase: 9.0.0-beta.7
   graphql: 15.5.1
   nexus: 1.1.0_graphql@15.5.1
-  reflect-metadata: 0.1.13
 
 devDependencies:
   '@types/node': 16.4.7
@@ -1911,10 +1909,6 @@ packages:
     dependencies:
       picomatch: 2.3.0
     dev: true
-
-  /reflect-metadata/0.1.13:
-    resolution: {integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==}
-    dev: false
 
   /registry-auth-token/4.2.1:
     resolution: {integrity: sha512-6gkSb4U6aWJB4SF2ZvLb76yCBjcvufXBqvvEx1HbmKPkutswjW1xNVRY0+daljIYRbogN7O0etYSlbiaEQyMyw==}

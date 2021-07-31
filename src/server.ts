@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import { ApolloServer } from "apollo-server-fastify";
 import { fastify } from "fastify";
 import { schema } from "./schema/mod";
