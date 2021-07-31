@@ -1,17 +1,11 @@
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-fastify";
 import { fastify } from "fastify";
-import { PingResolver, UserResolver } from "./resolvers";
-import { } from "./schema";
-import { buildSchema } from "type-graphql";
+import { schema } from "./schema/mod";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
 import { SERVER_PORT, SERVER_HOST } from "./constants"
 
 async function start() {
-    const schema = await buildSchema({
-        resolvers: [PingResolver, UserResolver],
-    });
-
     const server = new ApolloServer({
         schema,
         plugins: [
