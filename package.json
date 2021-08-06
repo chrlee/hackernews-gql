@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc -p tsconfig.json",
-    "start": "node --es-module-specifier-resolution=node build/server.js",
-    "dev:start": "node --es-module-specifier-resolution=node --loader ts-node/esm ./src/server.ts --extension ts --transpile-only",
-    "dev": "nodemon -e \"src/**/*.ts\" --exec npm run dev:start"
+    "start": "node build/server.js",
+    "dev": "tsnd --respawn --transpile-only src/server.ts"
   },
   "author": {
     "name": "searchableguy",
@@ -18,8 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^16.4.7",
-    "nodemon": "^2.0.12",
-    "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
     "typescript": "^4.3.5"
   },
   "dependencies": {
@@ -30,6 +28,5 @@
     "firebase": "^9.0.0-beta.7",
     "graphql": "^15.5.1",
     "nexus": "^1.1.0"
-  },
-  "type": "module"
+  }
 }

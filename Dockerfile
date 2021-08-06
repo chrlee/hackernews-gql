@@ -20,4 +20,4 @@ WORKDIR /app
 
 EXPOSE 8080
 
-CMD ["node", "--es-module-specifier-resolution=node", "build/server.js"]
+CMD ["node", "build/server.js"]
