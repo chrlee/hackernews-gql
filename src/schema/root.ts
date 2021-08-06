@@ -1,6 +1,7 @@
-import { queryType, stringArg, nonNull } from "nexus"
-import { User, Item } from "./models"
-import { getUser, getItem } from "../database/helpers"
+import { queryType, stringArg, nonNull, list} from "nexus"
+import { User, Item, PageType } from "./models"
+import { getUser, getItem, getPage } from "../database/helpers"
+import { GraphQLInt } from "graphql"
 
 export const Query = queryType({
     definition(t) {
@@ -12,7 +13,6 @@ export const Query = queryType({
             args: {
                 username: nonNull(stringArg({
                     description: "username of the user."
-
                 })),
             },
             async resolve(root, { username }, ctx) {
@@ -57,7 +57,17 @@ export const Query = queryType({
                     }
                 }
 
-            })
+            }),
+
+            t.field("page", {
+                type: list(GraphQLInt),
+                args: {
+                    name: nonNull(PageType)
+                },
+                async resolve(root, { name }, ctx) {
+                    return getPage(name)   
+                }
+            } )
     }
 })
 

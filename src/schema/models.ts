@@ -6,6 +6,12 @@ export const ItemType = enumType({
     description: "Type of items on hackernews."
 })
 
+export const PageType = enumType({
+    name: "PageType",
+    members: ["NEW", "TOP", "BEST", "ASK", "JOB", "SHOW"],
+    description: "Type of page on hackernews."
+})
+
 export const User = objectType({
     name: "User",
     definition(t) {
