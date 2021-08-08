@@ -1,6 +1,6 @@
-import { queryType, stringArg, nonNull, list} from "nexus"
+import { queryType, stringArg, nonNull, list } from "nexus"
 import { User, Item, PageType } from "./models"
-import { getUser, getItem, getPage } from "../database/helpers"
+import { userLoader, itemLoader, pageLoader } from "../database/loaders/mod"
 import { GraphQLInt } from "graphql"
 
 export const Query = queryType({
@@ -16,15 +16,8 @@ export const Query = queryType({
                 })),
             },
             async resolve(root, { username }, ctx) {
-                const user = await getUser(username!)
-                return {
-                    id: user.id,
-                    createdAt: new Date(user.created * 1000).toString(),
-                    submitted: user.submitted,
-                    about: user.about,
-                    karma: user.karma
-                }
-
+                const user = await userLoader.load(username)
+                return user
             }
         }),
 
@@ -34,27 +27,8 @@ export const Query = queryType({
                     id: nonNull(stringArg({}))
                 },
                 async resolve(root, { id }, ctx) {
-                    const item = await getItem(id)
-                    if (!item) {
-                        throw new Error("No valid item found with that ID.")
-                    }
-                    return {
-                        id: item.id,
-                        title: item.title,
-                        url: item.url,
-                        createdAt: new Date(item.time * 1000).toString(),
-                        text: item.text,
-                        children: item.kids,
-                        score: item.score,
-                        dead: item.dead,
-                        by: item.by,
-                        deleted: item.deleted,
-                        descendants: item.descendants,
-                        poll: item.poll,
-                        parent: item.parent,
-                        parts: item.parts,
-                        type: item.type,
-                    }
+                    const item = await itemLoader.load(id)
+                    return item
                 }
 
             }),
@@ -65,9 +39,9 @@ export const Query = queryType({
                     name: nonNull(PageType)
                 },
                 async resolve(root, { name }, ctx) {
-                    return getPage(name)   
+                    return pageLoader.load(name)
                 }
-            } )
+            })
     }
 })
 
