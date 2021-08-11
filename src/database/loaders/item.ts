@@ -2,14 +2,14 @@ import { ref, get, child } from "firebase/database"
 import { database } from "../firebase"
 import Dataloader from "dataloader"
 
-export async function getItemRaw(id: string) {
+export async function getItemRaw(id: number) {
     const itemsRef = ref(database, "/v0/item")
-    const itemRef = child(itemsRef, id)
+    const itemRef = child(itemsRef, String(id))
     const item = await get(itemRef)
     return item.val()
 }
 
-export async function getItem(id: string) {
+export async function getItem(id: number) {
     const item = await getItemRaw(id)
     if (!item) {
         throw new Error(`No item found with id: ${id}`)
@@ -20,7 +20,7 @@ export async function getItem(id: string) {
         url: item.url,
         createdAt: new Date(item.time * 1000).toString(),
         text: item.text,
-        children: item.kids,
+        children_ids: item.kids,
         score: item.score,
         dead: item.dead,
         by: item.by,
@@ -34,7 +34,7 @@ export async function getItem(id: string) {
 }
 
 
-export async function getItems(ids: readonly string[]) {
+export async function getItems(ids: readonly number[]) {
     const items = await Promise.all(ids.map(async id => {
         try {
             const item = await getItem(id)

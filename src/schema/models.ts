@@ -1,4 +1,5 @@
-import { enumType, objectType } from "nexus";
+import { userLoader } from "../database/loaders/mod"
+import { enumType, objectType, nonNull } from "nexus";
 
 export const ItemEnum = enumType({
     name: "ItemType",
@@ -15,11 +16,11 @@ export const PageEnum = enumType({
 export const User = objectType({
     name: "User",
     definition(t) {
-        t.nonNull.string("id");
+        t.nonNull.string("username");
         t.nonNull.string("createdAt");
         t.string("about");
         t.nonNull.int("karma");
-        t.list.nonNull.int("submitted");
+        t.list.nonNull.int("submission_ids");
     },
 });
 
@@ -28,18 +29,28 @@ export const Item = objectType({
     definition(t) {
         t.nonNull.int("id");
         t.boolean("deleted");
-        t.nonNull.string("by");
+        t.string("by");
         t.nonNull.string("createdAt");
         t.string("text");
         t.boolean("dead");
         t.int("parent");
         t.string("poll");
-        t.list.string("children");
+        t.list.nonNull.int("children_ids");
         t.string("url");
         t.nonNull.int("score");
         t.field("type", {
             type: ItemEnum,
         });
+        t.field("author", {
+            type: User,
+            async resolve(root) {
+                if (!root.by) {
+                    return null;
+                }
+                return userLoader.load(root.by)
+               
+            }
+        })
         t.nonNull.string("title");
         t.list.string("parts");
         t.int("descendants");

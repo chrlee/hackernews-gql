@@ -15,9 +15,9 @@ export async function getUser(username: string) {
         throw new Error(`No user found with username: ${username}`)
     }
     return {
-        id: user.id,
+        username: user.id,
         createdAt: new Date(user.created * 1000).toString(),
-        submitted: user.submitted,
+        submission_ids: user.submitted,
         about: user.about,
         karma: user.karma
     }
