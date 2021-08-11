@@ -1,4 +1,4 @@
-import { queryType, stringArg, nonNull, list, intArg } from "nexus"
+import { queryType, stringArg, subscriptionType, nonNull, list, intArg } from "nexus"
 import { User, Item, PageEnum } from "./models"
 import { userLoader, itemLoader, pageLoader } from "../database/loaders/mod"
 import { GraphQLInt } from "graphql"
@@ -46,3 +46,21 @@ export const Query = queryType({
 })
 
 
+
+export const Subscribe = subscriptionType({
+    definition(t) {
+        t.boolean('truths', {
+            subscribe() {
+                return (async function* () {
+                    while (true) {
+                        await new Promise(res => setTimeout(res, 1000))
+                        yield Math.random() > 0.5
+                    }
+                })()
+            },
+            resolve(eventData) {
+                return eventData
+            },
+        })
+    }
+})

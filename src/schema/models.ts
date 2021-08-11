@@ -48,7 +48,6 @@ export const Item = objectType({
                     return null;
                 }
                 return userLoader.load(root.by)
-               
             }
         })
         t.nonNull.string("title");

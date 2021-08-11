@@ -1,30 +1,27 @@
-import { ApolloServer } from "apollo-server-fastify";
 import { fastify } from "fastify";
 import { schema } from "./schema/mod";
-import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-import { SERVER_PORT } from "./constants"
+import { SERVER_PORT, GRAPHQL_PATH } from "./constants"
+import { createGraphqlRouteHandler } from "./graphql_handler"
 
 async function start() {
-    const server = new ApolloServer({
-        schema,
-        plugins: [
-            ApolloServerPluginLandingPageGraphQLPlayground({}),
-        ],
-    });
-
     const app = fastify();
-    await server.start();
-    app.register(server.createHandler());
-    
+
+    app.route({
+        method: ["GET", "POST"],
+        url: GRAPHQL_PATH,
+        handler: createGraphqlRouteHandler(schema)
+    })
+
     const endpoint = await app.listen({
         port: SERVER_PORT,
     });
 
-    console.log(`🚀 Server ready at ${endpoint}/graphql`);
+    console.log(`🚀 Server ready at ${endpoint}${GRAPHQL_PATH}`);
 }
 
 start()
-.catch((error) => {
-    console.error(error)
-    process.exit(0)
-})
+    .catch((error) => {
+        console.error(error)
+        process.exit(0)
+    })
+
