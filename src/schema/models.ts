@@ -1,12 +1,12 @@
 import { enumType, objectType } from "nexus";
 
-export const ItemType = enumType({
+export const ItemEnum = enumType({
     name: "ItemType",
     members: ["COMMENT", "JOB", "STORY", "POLL", "POLLOPT"],
     description: "Type of items on hackernews.",
 });
 
-export const PageType = enumType({
+export const PageEnum = enumType({
     name: "PageType",
     members: ["NEW", "TOP", "BEST", "ASK", "JOB", "SHOW"],
     description: "Type of page on hackernews.",
@@ -38,7 +38,7 @@ export const Item = objectType({
         t.string("url");
         t.nonNull.int("score");
         t.field("type", {
-            type: ItemType,
+            type: ItemEnum,
         });
         t.nonNull.string("title");
         t.list.string("parts");

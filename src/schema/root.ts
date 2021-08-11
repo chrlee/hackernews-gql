@@ -1,5 +1,5 @@
 import { queryType, stringArg, nonNull, list } from "nexus"
-import { User, Item, PageType } from "./models"
+import { User, Item, PageEnum, ItemEnum } from "./models"
 import { userLoader, itemLoader, pageLoader } from "../database/loaders/mod"
 import { GraphQLInt } from "graphql"
 
@@ -36,7 +36,7 @@ export const Query = queryType({
             t.field("page", {
                 type: list(GraphQLInt),
                 args: {
-                    name: nonNull(PageType)
+                    name: nonNull(PageEnum)
                 },
                 async resolve(root, { name }, ctx) {
                     return pageLoader.load(name)
