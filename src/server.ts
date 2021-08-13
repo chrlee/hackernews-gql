@@ -5,10 +5,11 @@ import { createGraphqlRouteHandler } from "./graphql_handler"
 
 async function start() {
     const app = fastify();
-
+    
     app.route({
         method: ["GET", "POST"],
         url: GRAPHQL_PATH,
+        // @ts-ignore
         handler: createGraphqlRouteHandler(schema)
     })
 

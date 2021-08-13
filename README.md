@@ -2,7 +2,6 @@
 
 A full fledged [graphql](https://graphql.org/) API for [hackernews](https://news.ycombinator.com/news).
 
-
 ## 🚀 Get Started
 
 ### Local

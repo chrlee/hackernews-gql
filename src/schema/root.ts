@@ -58,7 +58,7 @@ export const Subscribe = subscriptionType({
                     }
                 })()
             },
-            resolve(eventData) {
+            resolve(eventData: boolean | null) {
                 return eventData
             },
         })

@@ -27,9 +27,9 @@ export async function getItem(id: number) {
         deleted: item.deleted,
         descendants: item.descendants,
         poll: item.poll,
-        parent: item.parent,
+        parent_id: item.parent,
         parts: item.parts,
-        type: item.type,
+        type: item.type?.toUpperCase(),
     }
 }
 
