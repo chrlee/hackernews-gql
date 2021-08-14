@@ -16,7 +16,7 @@ export async function getUser(username: string) {
     }
     return {
         username: user.id,
-        createdAt: new Date(user.created * 1000).toString(),
+        createdAt: new Date(user.created * 1000).toISOString(),
         submission_ids: user.submitted,
         about: user.about,
         karma: user.karma
