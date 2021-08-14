@@ -1,6 +1,6 @@
 import { queryType, stringArg, subscriptionType, nonNull, list, intArg } from "nexus"
-import { User, Item, PageEnum } from "./models"
-import { userLoader, itemLoader, pageLoader } from "../database/loaders/mod"
+import { User, Item, StoryPageEnum } from "./models"
+import { userLoader, itemLoader, storyPageLoader } from "../database/loaders/mod"
 import { GraphQLInt } from "graphql"
 
 export const Query = queryType({
@@ -33,18 +33,17 @@ export const Query = queryType({
 
         })
 
-        t.field("page", {
+        t.field("storyPage", {
             type: list(GraphQLInt),
             args: {
-                name: nonNull(PageEnum)
+                name: nonNull(StoryPageEnum)
             },
             async resolve(root, { name }, ctx) {
-                return pageLoader.load(name)
+                return storyPageLoader.load(name)
             }
         })
     }
 })
-
 
 
 export const Subscribe = subscriptionType({

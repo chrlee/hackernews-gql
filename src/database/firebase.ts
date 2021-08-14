@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { getDatabase } from "firebase/database"
+import { getDatabase, ref } from "firebase/database"
 import { FIREBASE_PROJECT_ID } from "../constants"
 
 const firebaseClient = initializeApp({
@@ -11,5 +11,5 @@ const database = getDatabase(firebaseClient)
 
 export {
     firebaseClient,
-    database
+    database,
 }

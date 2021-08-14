@@ -3,7 +3,7 @@ import { database } from "../firebase"
 import Dataloader from "dataloader"
 
 export async function getItemRaw(id: number) {
-    const itemsRef = ref(database, "/v0/item")
+    const itemsRef = ref(database, "v0/item")
     const itemRef = child(itemsRef, String(id))
     const item = await get(itemRef)
     return item.val()

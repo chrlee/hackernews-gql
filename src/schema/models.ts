@@ -1,5 +1,5 @@
 import { userLoader, itemLoader } from "../database/loaders/mod"
-import { enumType, objectType, nonNull, list } from "nexus";
+import { enumType, objectType, list } from "nexus";
 
 export const ItemEnum = enumType({
     name: "ItemEnum",
@@ -7,10 +7,10 @@ export const ItemEnum = enumType({
     description: "Type of items on hackernews.",
 });
 
-export const PageEnum = enumType({
-    name: "PageEnum",
+export const StoryPageEnum = enumType({
+    name: "StoryPageEnum",
     members: ["NEW", "TOP", "BEST", "ASK", "JOB", "SHOW"],
-    description: "Type of page on hackernews.",
+    description: "Type of story page on hackernews.",
 });
 
 export const User = objectType({
