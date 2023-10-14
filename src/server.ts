@@ -1,28 +1,11 @@
-import { fastify } from "fastify";
 import { schema } from "./schema/mod";
-import { SERVER_PORT, GRAPHQL_PATH } from "./constants"
-import { createGraphqlRouteHandler } from "./graphql_handler"
+import { SERVER_PORT } from "./constants"
+import { createYoga } from "graphql-yoga";
 
-async function start() {
-    const app = fastify();
-    
-    app.route({
-        method: ["GET", "POST"],
-        url: GRAPHQL_PATH,
-        // @ts-ignore
-        handler: createGraphqlRouteHandler(schema)
-    })
+const yoga = createYoga({ schema })
+Bun.serve({
+    port: SERVER_PORT,
+    fetch: yoga
+});
 
-    const endpoint = await app.listen({
-        port: SERVER_PORT,
-    });
-
-    console.log(`🚀 Server ready at ${endpoint}${GRAPHQL_PATH}`);
-}
-
-start()
-    .catch((error) => {
-        console.error(error)
-        process.exit(0)
-    })
-
+console.log(`🚀 Server ready!`);

@@ -10,11 +10,11 @@ A [GraphQL](https://graphql.org/) API for [hackernews](https://news.ycombinator.
 
 2. Git clone the repo and checkout the version you want.
 
-3. Install pnpm for reproducible build through lockfile by running `npm install -g pnpm`
+3. Install [bun](https://bun.sh/docs/installation)
 
-4. Run `pnpm install` inside the project folder
+4. Run `bun install` inside the project folder
 
-5. Run `pnpm build && pnpm start`
+5. Run `bun run start`
 
 ### Docker
 

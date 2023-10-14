@@ -5,9 +5,6 @@ import { GraphQLInt } from "graphql"
 
 export const Query = queryType({
     definition(t) {
-        t.string("ping", {
-            resolve: () => `Pong!, current time is ${new Date().toISOString()}`
-        })
         t.field("user", {
             type: User,
             args: {
