@@ -1,15 +1,12 @@
-import { initializeApp } from "firebase/app"
-import { getDatabase } from "firebase/database"
-import { FIREBASE_PROJECT_ID } from "../constants"
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+import { FIREBASE_PROJECT_ID } from "../constants";
 
 const firebaseClient = initializeApp({
-    projectId: FIREBASE_PROJECT_ID,
-    databaseURL: "https://hacker-news.firebaseio.com",
-})
+  projectId: FIREBASE_PROJECT_ID,
+  databaseURL: "https://hacker-news.firebaseio.com",
+});
 
-const database = getDatabase(firebaseClient)
+const database = getDatabase(firebaseClient);
 
-export {
-    firebaseClient,
-    database,
-}
+export { firebaseClient, database };
