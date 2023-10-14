@@ -8,4 +8,4 @@ Bun.serve({
     fetch: yoga
 });
 
-console.log(`🚀 Server ready!`);
+console.log(`🚀 Server ready on port ${SERVER_PORT}!`);

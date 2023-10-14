@@ -23609,17 +23609,6 @@ class DynamicOutputPropertyDef {
   }
 }
 withNexusSymbol(DynamicOutputPropertyDef, NexusTypes.DynamicOutputProperty);
-// src/schema/mod.ts
-import {join as join5} from "path";
-
-// src/constants.ts
-import {join as join4} from "path";
-var __dirname = "/home/Developer/hackernews_gql/src";
-var SERVER_PORT = Number(process.env.PORT) || 8080;
-var FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID ?? "hacker-news";
-var FIREBASE_DATABASE_URL = process.env.FIREBASE_DATABASE_URL ?? "https://hacker-news.firebaseio.com";
-var NEXUS_GENERATED_DIRECTORY = join4(__dirname, "..", "node_modules", "@types", "typegen-nexus");
-
 // node_modules/@firebase/database/dist/node-esm/index.node.esm.js
 var import_faye_websocket = __toESM(require_websocket(), 1);
 
@@ -25133,7 +25122,7 @@ class PlatformLoggerServiceImpl {
   }
 }
 var name$o = "@firebase/app";
-var version$1 = "0.9.13";
+var version$1 = "0.9.20";
 var logger2 = new Logger("@firebase/app");
 var name$n = "@firebase/app-compat";
 var name$m = "@firebase/analytics-compat";
@@ -25159,7 +25148,7 @@ var name$3 = "@firebase/storage-compat";
 var name$2 = "@firebase/firestore";
 var name$1 = "@firebase/firestore-compat";
 var name = "firebase";
-var version2 = "9.23.0";
+var version2 = "10.5.0";
 var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
 var PLATFORM_LOG_STRING = {
   [name$o]: "fire-core",
@@ -28488,7 +28477,7 @@ class WebSocketConnection {
 WebSocketConnection.responsesRequiredToBeHealthy = 2;
 WebSocketConnection.healthyTimeout = 30000;
 var name2 = "@firebase/database";
-var version3 = "0.14.4";
+var version3 = "1.0.1";
 
 class AppCheckTokenProvider {
   constructor(appName_, appCheckProvider) {
@@ -32975,8 +32964,13 @@ setWebSocketImpl(import_faye_websocket.default.Client);
 registerDatabase("node");
 // node_modules/firebase/app/dist/index.mjs
 var name3 = "firebase";
-var version4 = "9.23.0";
+var version4 = "10.5.0";
 registerVersion(name3, version4, "app");
+
+// src/constants.ts
+var SERVER_PORT = Number(process.env.PORT) || 8080;
+var FIREBASE_PROJECT_ID = process.env.FIREBASE_PROJECT_ID ?? "hacker-news";
+var FIREBASE_DATABASE_URL = process.env.FIREBASE_DATABASE_URL ?? "https://hacker-news.firebaseio.com";
 
 // src/database/firebase.ts
 var firebaseClient = initializeApp({
@@ -33213,7 +33207,7 @@ var Query = queryType({
       }
     });
     t.field("storyPage", {
-      type: StoryPageEnum,
+      type: list(GraphQLInt),
       args: {
         name: nonNull(StoryPageEnum)
       },
@@ -33243,11 +33237,7 @@ var Subscribe = subscriptionType({
 
 // src/schema/mod.ts
 var schema3 = makeSchema({
-  types: [Query, Subscribe, User, Item, ItemEnum, StoryPageEnum],
-  outputs: {
-    typegen: join5(NEXUS_GENERATED_DIRECTORY, "index.d.ts"),
-    schema: join5(NEXUS_GENERATED_DIRECTORY, "schema.graphql")
-  }
+  types: [Query, Subscribe, User, Item, ItemEnum, StoryPageEnum]
 });
 
 // node_modules/@graphql-tools/utils/esm/errors.js
@@ -39079,4 +39069,4 @@ Bun.serve({
   port: SERVER_PORT,
   fetch: yoga
 });
-console.log(`\uD83D\uDE80 Server ready!`);
+console.log(`\uD83D\uDE80 Server ready on port ${SERVER_PORT}!`);

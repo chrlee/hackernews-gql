@@ -1,20 +1,12 @@
 # Hackernews-gql
 
-A [GraphQL](https://graphql.org/) API for [hackernews](https://news.ycombinator.com/news).
+A [GraphQL](https://graphql.org/) API for [hackernews](https://news.ycombinator.com/news). Built with Bun, Graphql-Yoga, and Nexus.
 
 ## 🚀 Get Started
 
 ### Local
 
-1. Install latest version of [node](https://nodejs.org/en/)
-
-2. Git clone the repo and checkout the version you want.
-
-3. Install [bun](https://bun.sh/docs/installation)
-
-4. Run `bun install` inside the project folder
-
-5. Run `bun run start`
+Install [bun](https://bun.sh/docs/installation) and run `bun run build && bun run start` inside the project folder
 
 ### Docker
 
