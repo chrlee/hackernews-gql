@@ -1,6 +1,6 @@
-# Hackernews Graphql
+# Hackernews-gql
 
-A full fledged [graphql](https://graphql.org/) API for [hackernews](https://news.ycombinator.com/news).
+A [GraphQL](https://graphql.org/) API for [hackernews](https://news.ycombinator.com/news).
 
 ## 🚀 Get Started
 
@@ -26,11 +26,6 @@ A full fledged [graphql](https://graphql.org/) API for [hackernews](https://news
 
 The HN graphql API service should be up and running.
 
-## Contribution
-
-Check the [contributing page](./CONTRIBUTING.md) for information on how to
-contribute to this project.
-
-## 📝 License
+## 🪪 License
 
 The project is licensed under [MIT](./LICENSE).

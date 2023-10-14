@@ -1,7 +1,7 @@
 {
-  "name": "hackernews_graphql",
-  "version": "0.0.1",
-  "description": "A graphql API for hackernews.",
+  "name": "hackernews_gql",
+  "version": "0.1.0",
+  "description": "Hackernews API converted to GraphQL",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,9 +10,8 @@
     "dev": "tsnd --respawn --transpile-only src/server.ts"
   },
   "author": {
-    "name": "searchableguy",
-    "email": "me@searchableguy.com",
-    "url": "https://searchableguy.com"
+    "name": "chrlee",
+    "email": "christianjslee@gmail.com"
   },
   "license": "MIT",
   "devDependencies": {

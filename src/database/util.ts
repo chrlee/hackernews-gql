@@ -4,6 +4,7 @@ export const STORY_PAGES: Record<string, string> = {
     "ASK": "askstories",
     "SHOW": "showstories",
     "JOB": "jobstories",
+    "BEST": "beststories",
 }
 
 export function getStoryPagePath(name: string) {
