@@ -5,14 +5,14 @@ import {
   nonNull,
   list,
   intArg,
+  connectionPlugin,
 } from "nexus";
-import { User, Item, StoryPageEnum } from "./models";
+import { User, Item, StoryPageEnum, StoryPageTypes } from "./models";
 import {
   userLoader,
   itemLoader,
   storyPageLoader,
 } from "../database/loaders/mod";
-import { GraphQLInt } from "graphql";
 
 export const Query = queryType({
   definition(t) {
@@ -42,13 +42,23 @@ export const Query = queryType({
       },
     });
 
-    t.field("storyPage", {
-      type: list(Item),
-      args: {
+    t.connectionField("storyPage", {
+      type: Item,
+      additionalArgs: {
         name: nonNull(StoryPageEnum),
       },
-      async resolve(root, { name }, ctx) {
-        return storyPageLoader.load(name);
+      cursorFromNode(node, args, ctx, info, { index, nodes }) {
+        if (args.last && !args.before) {
+          const totalCount = nodes.length;
+          return `cursor:${totalCount - args.last! + index + 1}`;
+        }
+        return connectionPlugin.defaultCursorFromNode(node, args, ctx, info, {
+          index,
+          nodes,
+        });
+      },
+      nodes(root, args) {
+        return storyPageLoader.load(args.name);
       },
     });
   },
