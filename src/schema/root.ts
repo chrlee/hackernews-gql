@@ -43,7 +43,7 @@ export const Query = queryType({
     });
 
     t.field("storyPage", {
-      type: list(GraphQLInt),
+      type: list(Item),
       args: {
         name: nonNull(StoryPageEnum),
       },

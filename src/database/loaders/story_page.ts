@@ -2,13 +2,14 @@ import { ref, get, child } from "firebase/database";
 import { database } from "../firebase";
 import Dataloader from "dataloader";
 import { getStoryPagePath } from "../util";
+import { getItemRaw } from "./item";
 
 export async function getStoryPageRaw(name: string) {
   const rootRef = ref(database, "/v0");
   const storyPagePath = getStoryPagePath(name);
   const storyPageRef = child(rootRef, storyPagePath);
   const storyPage = await get(storyPageRef);
-  return storyPage.val();
+  return storyPage.val().map((id: number) => getItemRaw(id));
 }
 
 export async function getStoryPage(name: string) {
