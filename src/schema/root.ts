@@ -3,11 +3,10 @@ import {
   stringArg,
   subscriptionType,
   nonNull,
-  list,
   intArg,
   connectionPlugin,
 } from "nexus";
-import { User, Item, StoryPageEnum, StoryPageTypes } from "./models";
+import { User, Item, StoryPageEnum } from "./models";
 import {
   userLoader,
   itemLoader,
