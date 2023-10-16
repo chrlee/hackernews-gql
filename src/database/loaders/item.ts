@@ -18,7 +18,7 @@ export async function getItem(id: number) {
     id: item.id,
     title: item.title,
     url: item.url,
-    createdAt: new Date(item.time * 1000).toISOString(),
+    createdAt: item.time,
     text: item.text,
     children_ids: item.kids,
     score: item.score,

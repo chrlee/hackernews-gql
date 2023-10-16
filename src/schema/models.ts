@@ -40,7 +40,7 @@ export const Item = objectType({
     t.nonNull.int("id");
     t.boolean("deleted");
     t.string("by");
-    t.nonNull.string("createdAt");
+    t.nonNull.string("time");
     t.string("text");
     t.boolean("dead");
     t.int("parent_id");
