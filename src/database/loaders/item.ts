@@ -18,7 +18,7 @@ export async function getItem(id: number) {
     id: item.id,
     title: item.title,
     url: item.url,
-    createdAt: item.time,
+    time: item.time,
     text: item.text,
     children_ids: item.kids,
     score: item.score,
