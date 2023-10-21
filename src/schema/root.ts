@@ -7,11 +7,7 @@ import {
   connectionPlugin,
 } from "nexus";
 import { User, Item, StoryPageEnum } from "./models";
-import {
-  userLoader,
-  itemLoader,
-  storyPageLoader,
-} from "../database/loaders";
+import { userLoader, itemLoader, storyPageLoader } from "../database/loaders";
 
 export const Query = queryType({
   definition(t) {

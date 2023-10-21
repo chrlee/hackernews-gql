@@ -17,7 +17,6 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.8.6",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "add": "^2.0.6",
@@ -25,6 +24,7 @@
     "bun-types": "^1.0.6",
     "bun-vercel": "^1.0.0-alpha.5",
     "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "typescript": "^4.9.5"
   },
