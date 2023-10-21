@@ -1,4 +1,4 @@
-import { userLoader, itemLoader } from "../database/loaders/mod";
+import { userLoader, itemLoader } from "../database/loaders";
 import { enumType, objectType, list } from "nexus";
 
 export const ItemEnum = enumType({

@@ -4,33 +4,18 @@ import Dataloader from "dataloader";
 import { getStoryPagePath } from "../util";
 import { getItemRaw } from "./item";
 
-export async function getStoryPageRaw(name: string) {
+export async function getStoryPageRaw(pageType: string) {
   const rootRef = ref(database, "/v0");
-  const storyPagePath = getStoryPagePath(name);
+  const storyPagePath = getStoryPagePath(pageType);
   const storyPageRef = child(rootRef, storyPagePath);
   const storyPage = await get(storyPageRef);
   return storyPage.val().map((id: number) => getItemRaw(id));
 }
 
-export async function getStoryPage(name: string) {
-  const page = await getStoryPageRaw(name);
-  return page;
-}
-
-export async function getStoryPages(names: readonly string[]) {
-  const pages = await Promise.all(
-    names.map(async (name) => {
-      try {
-        const page = await getStoryPage(name);
-        return page;
-      } catch (error: any) {
-        return new Error(error?.message);
-      }
-    }),
-  );
-  return pages;
+export function getStoryPages(pageTypes: readonly string[]) {
+  return Promise.all(pageTypes.map((pageType) => getStoryPageRaw(pageType)));
 }
 
 export const storyPageLoader = new Dataloader(getStoryPages, {
-  batchScheduleFn: (callback) => setTimeout(callback, 500),
+  batchScheduleFn: (callback) => setTimeout(callback, 200),
 });

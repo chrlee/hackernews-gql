@@ -33,18 +33,8 @@ export async function getItem(id: number) {
   };
 }
 
-export async function getItems(ids: readonly number[]) {
-  const items = await Promise.all(
-    ids.map(async (id) => {
-      try {
-        const item = await getItem(id);
-        return item;
-      } catch (error: any) {
-        return new Error(error?.message);
-      }
-    }),
-  );
-  return items;
+export function getItems(ids: readonly number[]) {
+  return Promise.all(ids.map((id) => getItem(id)));
 }
 
 export const itemLoader = new Dataloader(getItems, {

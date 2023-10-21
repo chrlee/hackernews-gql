@@ -23,18 +23,8 @@ export async function getUser(username: string) {
   };
 }
 
-export async function getUsers(usernames: readonly string[]) {
-  const users = await Promise.all(
-    usernames.map(async (username) => {
-      try {
-        const user = await getUser(username);
-        return user;
-      } catch (error: any) {
-        return new Error(error?.message);
-      }
-    }),
-  );
-  return users;
+export function getUsers(usernames: readonly string[]) {
+  return Promise.all(usernames.map((username) => getUser(username)));
 }
 
 export const userLoader = new Dataloader(getUsers, {

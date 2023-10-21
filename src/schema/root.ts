@@ -11,7 +11,7 @@ import {
   userLoader,
   itemLoader,
   storyPageLoader,
-} from "../database/loaders/mod";
+} from "../database/loaders";
 
 export const Query = queryType({
   definition(t) {

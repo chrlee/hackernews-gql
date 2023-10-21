@@ -1,4 +1,4 @@
-import { schema } from "./schema/mod";
+import { schema } from "./schema";
 import { SERVER_PORT } from "./constants";
 import { createYoga } from "graphql-yoga";
 
@@ -6,7 +6,7 @@ const yoga = createYoga({ schema, logging: "error" });
 
 export default {
   port: SERVER_PORT,
-  fetch: yoga
-}
+  fetch: yoga,
+};
 
 console.log(`🚀 Server ready on port ${SERVER_PORT}!`);
