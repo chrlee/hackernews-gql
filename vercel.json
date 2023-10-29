@@ -1,0 +1,13 @@
+{
+  "buildCommand": "bun run build",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*.hkr.news" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,POST" }
+      ]
+    }
+  ]
+
+}
