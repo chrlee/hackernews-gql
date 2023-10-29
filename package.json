@@ -2,7 +2,6 @@
   "name": "hackernews_gql",
   "version": "0.1.0",
   "description": "Hackernews API converted to GraphQL",
-  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "bun-vercel src/server.ts",
