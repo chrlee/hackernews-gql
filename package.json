@@ -4,7 +4,7 @@
   "description": "Hackernews API converted to GraphQL",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "bun install && bun build --target bun src/server.ts --outfile=public/server.js",
+    "build": "bun build --target bun src/server.ts --minify --compile",
     "start": "bunx public/server.js",
     "dev": "bunx --hot src/server.ts",
     "clean": "rm -rf node_modules && rm -rf build && rm bun.lockb",
