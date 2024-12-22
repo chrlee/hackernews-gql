@@ -4,8 +4,6 @@ A [GraphQL](https://graphql.org/) API for [hackernews](https://news.ycombinator.
 
 ## 🚀 Get Started
 
-Install [bun](https://bun.sh/docs/installation) and run `bun install && bun run dev` inside the project folder.
-
-## 🪪 License
-
-The project is licensed under [MIT](./LICENSE).
+Install dependencies and start the development server:
+```bash
+npm install && npm run dev

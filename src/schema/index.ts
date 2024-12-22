@@ -5,5 +5,10 @@ import { GraphQLSchema } from "graphql";
 
 export const schema = makeSchema({
   types: [Query, Subscribe, User, Item, ItemEnum, StoryPageEnum],
-  plugins: [connectionPlugin()],
+  plugins: [
+    connectionPlugin({
+      includeNodesField: true,
+      strictArgs: true,
+    }),
+  ],
 }) as unknown as GraphQLSchema;

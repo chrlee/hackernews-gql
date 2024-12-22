@@ -4,15 +4,35 @@ import {
   subscriptionType,
   nonNull,
   intArg,
-  connectionPlugin,
+  enumType,
 } from "nexus";
-import { User, Item, StoryPageEnum } from "./models";
-import { userLoader, itemLoader, storyPageLoader } from "../database/loaders";
+import type { Context } from '../context';
+
+import { objectType } from 'nexus';
+
+export const User = objectType({
+  name: 'User',
+  definition(t) {
+    t.string('id');
+  },
+});
+
+export const Item = objectType({
+  name: 'Item',
+  definition(t) {
+    t.int('id');
+  },
+});
+
+export const StoryPageEnum = enumType({
+  name: 'StoryPageEnum',
+  members: ['TOP', 'NEW', 'BEST', 'ASK', 'SHOW', 'JOB'],
+});
 
 export const Query = queryType({
   definition(t) {
     t.field("user", {
-      type: User,
+      type: 'User',
       args: {
         username: nonNull(
           stringArg({
@@ -20,40 +40,34 @@ export const Query = queryType({
           }),
         ),
       },
-      async resolve(root, { username }, ctx) {
-        const user = await userLoader.load(username);
+      resolve: async (_: any, args: { username: string }, context: Context) => {
+        const user = await context.loaders.userLoader.load(args.username);
         return user;
       },
     });
 
     t.field("item", {
-      type: Item,
+      type: 'Item',
       args: {
         id: nonNull(intArg()),
       },
-      async resolve(root, { id }, ctx) {
-        const item = await itemLoader.load(id);
+      resolve: async (_: any, args: { id: number }, context: Context) => {
+        const item = await context.loaders.itemLoader.load(args.id);
         return item;
       },
     });
 
-    t.connectionField("storyPage", {
-      type: Item,
-      additionalArgs: {
-        name: nonNull(StoryPageEnum),
-      },
-      cursorFromNode(node, args, ctx, info, { index, nodes }) {
-        if (args.last && !args.before) {
-          const totalCount = nodes.length;
-          return `cursor:${totalCount - args.last! + index + 1}`;
-        }
-        return connectionPlugin.defaultCursorFromNode(node, args, ctx, info, {
-          index,
-          nodes,
-        });
-      },
-      nodes(root, args) {
-        return storyPageLoader.load(args.name);
+    t.field("storyPage", {
+      type: 'Item',
+      args: {
+        name: nonNull('StoryPageEnum'),
+        first: intArg(),
+        after: stringArg(),
+        last: intArg(),
+        before: stringArg(),
+      }, 
+      resolve: async (_: any, args: { name: string }, context: Context) => {
+        return context.loaders.storyPageLoader.load(args.name);
       },
     });
   },
